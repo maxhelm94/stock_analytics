@@ -1,44 +1,14 @@
-""" zid_project1.py
-
-"""
 import os
 
 import toolkit_config as cfg
 
-
-# ---------------------------------------------------------------------------- 
-# Location of files and folders
-# Instructions: 
-#   - Replace the '<COMPLETE THIS PART>' strings with the appropriate
-#   expressions.
-# IMPORTANT:
-#   - Use the appropriate method from the `os` module to combine paths
-#   - Do **NOT** include full paths like "C:\\User...". You **MUST* combine
-#     paths using methods from the `os` module
-#   - See the assessment description for more information
-# ---------------------------------------------------------------------------- 
 ROOTDIR = os.path.join(cfg.PRJDIR, 'project1')
 DATDIR = os.path.join(ROOTDIR, 'data')
 TICPATH = os.path.join(ROOTDIR, 'tickers.txt')
 
-
-# ---------------------------------------------------------------------------- 
-# Variables describing the contents of ".dat" files 
-# Instructions: 
-#   - Replace the '<COMPLETE THIS PART>' string with the appropriate
-#     expression. 
-#   - See the assessment description for more information
-# ---------------------------------------------------------------------------- 
-# NOTE: `COLUMNS` must be a list, where each element is a column name in the
-# order they appear in the ".dat" files
 COLUMNS = ['Volume', 'Date', 'Adj Close', 'Close', 'Open', 'High']
 
 
-# NOTE: COLWIDTHS must be a dictionary with {<col> : <width>}, where
-# - Each key (<col>) is a column name in the `COLUMNS` list
-# - Each value (<width>) is an **integer** with the width of the column, as
-#   defined in your README.txt file
-#
 COLWIDTHS = {
     'Volume': 14,
     'Date': 11,
@@ -48,11 +18,6 @@ COLWIDTHS = {
     'High': 20
 }
 
-
-# ---------------------------------------------------------------------------- 
-#   Please complete the body of this function so it matches its docstring
-#   description. See the assessment description file for more information.
-# ---------------------------------------------------------------------------- 
 def get_tics(pth):
     """ Reads a file with the tickers (one ticker per line) and returns a list
     with the properly formatted tickers.
@@ -87,10 +52,7 @@ def get_tics(pth):
     filehandle.close()
     return result
 
-# ---------------------------------------------------------------------------- 
-#   Please complete the body of this function so it matches its docstring
-#   description. See the assessment description file for more information.
-# ---------------------------------------------------------------------------- 
+
 def read_dat(tic):
     """ Returns a list with the lines of the ".dat" file containing the stock
     price information for the ticker `tic`.
@@ -107,16 +69,8 @@ def read_dat(tic):
         A list with the lines of the ".dat" file for this `tic`. Each element
         is a line in the file, without newline characters (e.g. '\n')
 
-    
-     Hints (optional)
-     ----------------
-     - Create a variable with the location of the relevant file using the `os`
-       module, the DATDIR constant, and f-strings.
-
     """
-    # IMPORTANT: The answer to this question should NOT include full paths
-    # like "C:\\Users...". There should be no forward or backslashes.
-    # <COMPLETE THIS PART>
+    
     result = []
     filename = tic + "_prc.dat"
     pathToTic = os.path.join(DATDIR, filename)
@@ -128,11 +82,6 @@ def read_dat(tic):
     return result
 
 
-
-# ---------------------------------------------------------------------------- 
-#   Please complete the body of this function so it matches its docstring
-#   description. See the assessment description file for more information.
-# ---------------------------------------------------------------------------- 
 def line_to_dict(line):
     """ Returns the information contained in a line of a ".dat" file as a
     dictionary, where each key is a column name and each value is a string
@@ -153,15 +102,8 @@ def line_to_dict(line):
         - Each key (<col>) is a column in `COLUMNS` (as a string)
         - Each value (<value>) is a string containing the correct value for
           this column.
-
-    Hints (optional)
-    ----------------
-    - Your solution should include the constants `COLUMNS` and `COLWIDTHS`
-    - For each line in the file, extract the correct value for each column
-      sequentially.
-      
     """
-    # <COMPLETE THIS PART>
+
     result = {}
     sum = 0
     for name in COLUMNS:
@@ -171,10 +113,6 @@ def line_to_dict(line):
     return result
 
 
-
-# ---------------------------------------------------------------------------- 
-#   DO NOT MODIFY THIS FUNCTION
-# ---------------------------------------------------------------------------- 
 def main(csvloc, replace=False):
     """ This function will read the relevant ".dat" files for all tickers in
     the `TICPATH` file and create a CSV file with all the data. 
@@ -228,13 +166,6 @@ def main(csvloc, replace=False):
 
 # ---------------------------------------------------------------------------- 
 #   Test functions:
-#   The purpose of these functions is to help you test the functions above as
-#   you write them. 
-#   IMPORTANT:
-#   - These functions are optional, you do not have to use them
-#   - These functions do not count as part of your assessment (they will not
-#     be marked)
-#   - You can modify these functions as you wish, or delete them altogether.
 # ---------------------------------------------------------------------------- 
 def _test_get_tics():
     """ Test function for the `get_tics` function. Will print the tickers as
@@ -271,9 +202,6 @@ def _test_line_to_dict():
     dic = line_to_dict(lines[0])
     print(dic)
 
-# ---------------------------------------------------------------------------- 
-#  Uncomment the statements below to call the test and/or main functions.
-# ---------------------------------------------------------------------------- 
 if __name__ == "__main__":
     # Test functions
     _test_get_tics()
